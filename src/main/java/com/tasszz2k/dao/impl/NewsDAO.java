@@ -25,6 +25,30 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
     }
 
     @Override
+    public List<NewsModel> searchByKeyword(Pageble pageble, String keyword) {
+        StringBuilder sql = new StringBuilder("SELECT news.id,news.title,news.thumbnail,news.shortdescription,\n"
+                + "news.content,news.categoryid,news.createddate,news.createdby,news.modifieddate,news.modifiedby\n"
+                + "FROM dbo.news \n"
+                + "INNER JOIN dbo.category ON category.id = news.categoryid\n"
+                + "WHERE news.title LIKE N'%" + keyword + "%'\n"
+                + "OR news.shortdescription LIKE N'%" + keyword + "%'\n"
+                + "OR news.content LIKE N'%" + keyword + "%'\n"
+                + "OR news.createdby LIKE N'%" + keyword + "%'\n"
+                + "OR news.modifiedby LIKE N'%" + keyword + "%'\n"
+                + "OR name LIKE N'%" + keyword + "%'");
+        if (pageble.getSorter() != null
+                && StringUtils.isNotBlank(pageble.getSorter().getSortBy())
+                && StringUtils.isNotBlank(pageble.getSorter().getSortType())) {
+            sql.append(" ORDER BY " + pageble.getSorter().getSortBy() + " " + pageble.getSorter().getSortType() + "\n");
+        }
+        if (pageble.getOffset() != null && pageble.getLimit() != null) {
+            sql.append(" OFFSET " + pageble.getOffset() + " ROWS\n"
+                    + "FETCH NEXT " + pageble.getLimit() + " ROW ONLY ");
+        }
+        return query(sql.toString(), new NewsMapper());
+    }
+
+    @Override
     public Long save(NewsModel newsModel) {
         StringBuilder sql = new StringBuilder("INSERT INTO [news](title, content, thumbnail, shortDescription, categoryid, createddate, createdby) values(?,?,?,?,?,?,?)");
         return insert(sql.toString(), newsModel.getTitle(), newsModel.getContent(), newsModel.getThumbnail(),
@@ -86,7 +110,7 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
                 + "FROM news \n"
                 + "INNER JOIN dbo.category ON category.id = news.categoryid");
         if (pageble.getSorter() != null
-                && StringUtils.isNotBlank(pageble.getSorter().getSortBy()) 
+                && StringUtils.isNotBlank(pageble.getSorter().getSortBy())
                 && StringUtils.isNotBlank(pageble.getSorter().getSortType())) {
             sql.append(" ORDER BY " + pageble.getSorter().getSortBy() + " " + pageble.getSorter().getSortType() + "\n");
         }
@@ -103,4 +127,19 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
         String sql = "SELECT COUNT(*) FROM dbo.news";
         return count(sql);
     }
+
+    @Override
+    public Integer getTotalResulSearched(String keyword) {
+        String sql = "SELECT COUNT(*)   " 
+                + "FROM dbo.news \n"
+                + "INNER JOIN dbo.category ON category.id = news.categoryid\n"
+                + "WHERE news.title LIKE N'%" + keyword + "%'\n"
+                + "OR news.shortdescription LIKE N'%" + keyword + "%'\n"
+                + "OR news.content LIKE N'%" + keyword + "%'\n"
+                + "OR news.createdby LIKE N'%" + keyword + "%'\n"
+                + "OR news.modifiedby LIKE N'%" + keyword + "%'\n"
+                + "OR name LIKE N'%" + keyword + "%'";
+        return count(sql);
+    }
+
 }

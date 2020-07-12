@@ -20,5 +20,7 @@ public interface INewsService {
     void delete(Long[] ids);
     List<NewsModel> findAll(Pageble pageble);
     Integer getTotalItems();
+    Integer getTotalResulSearched(String keyword);
     NewsModel findOne(long id);
+    List<NewsModel> searchByKeyword(Pageble pageble, String keyword);
 }

@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author TASS
  */
-@WebServlet(name = "NewsWebController", urlPatterns = {"/blog-post", "/post"})
+@WebServlet(name = "NewsWebController", urlPatterns = {"/blog-post", "/post","/search"})
 public class NewsWebController extends HttpServlet {
 
     @Inject
@@ -117,6 +117,27 @@ public class NewsWebController extends HttpServlet {
             request.setAttribute(SystemConstant.MODEL, model);
 
             view = "/view/web/news/blogPost.jsp";
+        }else if (model.getType().equals(SystemConstant.SEARCH)) {//model.getType().equals(SystemConstant.LIST)
+            String keyword = request.getParameter("keyword");
+            request.setAttribute("keyword", keyword);
+            request.setAttribute("categories", categoryService.findAll());
+            if (request.getParameter("page") == null) {
+                model.setType("search");
+                model.setPage(1);
+                model.setMaxPageItem(5);
+                model.setSortBy("id");
+                model.setSortType("desc");
+            }
+
+            Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
+                    new Sorter(model.getSortBy(), model.getSortType()));
+            model.setListResult(newsService.searchByKeyword(pageble,keyword));
+            model.setTotalItems(newsService.getTotalResulSearched(keyword));
+            model.setTotalPages((int) Math.ceil((double) model.getTotalItems() / model.getMaxPageItem()));
+//            
+            request.setAttribute(SystemConstant.MODEL, model);
+
+            view = "/view/web/news/search.jsp";
         }
 
         MessageUtil.showMessage(request);

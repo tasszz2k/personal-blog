@@ -52,9 +52,15 @@
                                     <h3 class="text-uppercase text-center text-danger post-subtitle" data-aos="zoom-in">====================</h3>
 
                                     <div class="d-flex justify-content-center h-100" style="margin-top: 5px;width: 320px;margin-right: auto;margin-left: auto;">
-                                        <div class="text-left searchbar" data-bs-hover-animate="pulse" style="width: 358px;"><input type="text" class="search_input" style="width: 190px;font-family: 'Open Sans', sans-serif;padding: 0;margin-left: 0px;padding-left: 10px;" autocomplete="on" placeholder="Search..."><a class="search_icon"
-                                                href="#"><i
-                                        class="fas fa-search"></i></a></div>
+                                        <div class="text-left searchbar" data-bs-hover-animate="pulse" style="width: 358px;">
+                                            <form id="formSearch" action="${pageContext.request.contextPath}/search" method="get">
+                                                <input type="text" name="keyword" class="search_input" style="width: 190px;font-family: 'Open Sans', sans-serif;padding: 0;margin-left: 0px;padding-left: 10px;" autocomplete="on" placeholder="Search...">
+                                                <input type="hidden" name="type" value="search">
+                                                <button type="submit" class="search_icon btn btn-outline-secondary" >
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                            </form>      
+                                        </div>
                                     </div>
                                 </div>
                             </div>

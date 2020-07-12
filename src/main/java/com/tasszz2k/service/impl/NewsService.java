@@ -81,4 +81,14 @@ public class NewsService implements INewsService {
         return newsModel;
     }
 
+    @Override
+    public List<NewsModel> searchByKeyword(Pageble pageble, String keyword) {
+        return newsDAO.searchByKeyword(pageble, keyword);
+    }
+
+    @Override
+    public Integer getTotalResulSearched(String keyword) {
+        return newsDAO.getTotalResulSearched(keyword);
+    }
+
 }
