@@ -14,20 +14,20 @@
                         <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/about">ABOUT ME</a></li>
                         <!-- <li class="nav-item" role="presentation"><a class="nav-link" href="post.html">Blog Post</a></li> -->
                         <li class="nav-item dropdown" role="presentation">
-                            <a class="nav-link dropdown-toggle" href="post.html" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> BLOG POST </a>
+                            <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/blog-post?type=list" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> BLOG POST </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <c:forEach var="item" items="${categories}">
                                     <c:if test="${not fn:startsWith(item.code, 'tho-')}">
-                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/blog-post?type=list">${item.name}</a></li>
+                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/blog-post?type=list&categoryCode=${item.code}">${item.name}</a></li>
                                     </c:if>
                                 </c:forEach>
 
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="${pageContext.request.contextPath}/blog-post?type=list">THƠ</a>
-                                    <ul class="dropdown-menu">
+                                    <a class="dropdown-item dropdown-toggle" href="">THƠ</a>
+                                    <ul class="dropdown-menu" style="top: 10px;" >
                                         <c:forEach var="item" items="${categories}">
                                             <c:if test="${fn:startsWith(item.code, 'tho-')}">
-                                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/blog-post?type=list">${item.name}</a></li>
+                                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/blog-post?type=list&categoryCode=${item.code}">${item.name}</a></li>
                                             </c:if>
                                         </c:forEach>
                                     </ul>

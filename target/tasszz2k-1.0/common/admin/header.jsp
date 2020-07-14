@@ -79,7 +79,7 @@
                         </div>
                     </a>
                     <a class="d-flex align-items-center dropdown-item" href="#">
-                        <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="${pageContext.request.contextPath}/template/admin/assets/img/avatars/avatar5.jpeg">
+                        <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="${pageContext.request.contextPath}/template/admin/assets/img/avatars/avatar (1).svg">
                             <div class="bg-success status-indicator"></div>
                         </div>
                         <div class="font-weight-bold">
@@ -92,7 +92,7 @@
         </li>
         <div class="d-none d-sm-block topbar-divider"></div>
         <li class="nav-item dropdown no-arrow" role="presentation">
-            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">TASS</span><img class="border rounded-circle img-profile" src="${pageContext.request.contextPath}/template/admin/assets/img/avatars/avatar5.jpeg"></a>
+            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">TASS</span><img class="border rounded-circle img-profile" src="${pageContext.request.contextPath}/template/admin/assets/img/avatars/avatar (1).svg"></a>
                 <div
                     class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
                     <a

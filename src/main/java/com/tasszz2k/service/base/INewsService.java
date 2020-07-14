@@ -21,6 +21,8 @@ public interface INewsService {
     List<NewsModel> findAll(Pageble pageble);
     Integer getTotalItems();
     Integer getTotalResulSearched(String keyword);
+    Integer getTotalItemsByCategoryCode(String categoryCode);
     NewsModel findOne(long id);
     List<NewsModel> searchByKeyword(Pageble pageble, String keyword);
+    List<NewsModel> findByCategoryCode(Pageble pageble, String categoryCode);
 }

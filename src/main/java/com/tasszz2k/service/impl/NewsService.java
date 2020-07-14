@@ -91,4 +91,22 @@ public class NewsService implements INewsService {
         return newsDAO.getTotalResulSearched(keyword);
     }
 
+    @Override
+    public List<NewsModel> findByCategoryCode(Pageble pageble, String categoryCode) {
+        if (categoryCode == null || categoryCode.isEmpty() || categoryCode.compareTo("all") == 0) {
+            return newsDAO.findAll(pageble);
+        } else {
+            return newsDAO.findByCategoryCode(pageble, categoryCode);
+        }
+    }
+
+    @Override
+    public Integer getTotalItemsByCategoryCode(String categoryCode) {
+        if (categoryCode == null || categoryCode.isEmpty() || categoryCode.compareTo("all") == 0) {
+            return newsDAO.getTotalItems();
+        } else {
+            return newsDAO.getTotalItemsByCategoryCode(categoryCode);
+        }
+    }
+
 }

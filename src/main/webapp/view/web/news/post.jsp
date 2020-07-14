@@ -46,7 +46,7 @@
                     <div class="col-md-10 col-lg-8 mx-auto">
                         <!--title-->
                         <div class="post-preview" data-aos="zoom-in">
-                            <h1 class="text-uppercase text-center">${model.title}</h1>
+                            <h1 class="text-uppercase text-center text-danger post-title">${model.title}</h1>
                             <p class="post-subtitle text-center post-meta" style="padding-bottom: 0px;margin-bottom: 0px;">
                                 "${model.shortDescription}"</p>
                             <p class="post-meta" style="margin: 0px;"> Thể loại&nbsp; <a href="#">${model.categoryName}</a>
@@ -111,9 +111,13 @@
                         </div>
                         <div class="comment-box add-comment ">
                             <form id="formAddComment">
+
                                 <span class="commenter-pic">
                                     <c:if test="${not empty currentUser.avatar}">
-                                        <img src="${currentUser.avatar}" class="img-fluid " style="height:100%;width:100%; ">
+                                        <a href='<c:url value="/profile?type=edit&userName=${currentUser.userName}"/>'>
+                                            <img src="${currentUser.avatar}" class="img-fluid " style="height:100%;width:100%; ">
+                                        </a>
+
                                     </c:if>
                                     <c:if test="${empty currentUser.avatar}">
                                         <img src="template/admin/assets/img/avatars/guest.gif" class="img-fluid " style="height:100%;width:100%; ">
@@ -121,7 +125,7 @@
                                 </span>
                                 <span class="commenter-name">
                                     <c:if test="${not empty currentUser}">
-                                        <a href="# ">${currentUser.fullName}</a>
+                                        <a href='<c:url value="/profile?type=edit&userName=${currentUser.userName}"/>' >${currentUser.fullName}</a>
                                         <span class="comment-time" style="color: greenyellow;">Active</span>
                                     </c:if>
                                     <c:if test="${empty currentUser}">

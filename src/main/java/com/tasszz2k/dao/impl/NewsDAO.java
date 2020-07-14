@@ -119,7 +119,6 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
                     + "FETCH NEXT " + pageble.getLimit() + " ROW ONLY ");
         }
         return query(sql.toString(), new NewsMapper());
-
     }
 
     @Override
@@ -130,7 +129,7 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
 
     @Override
     public Integer getTotalResulSearched(String keyword) {
-        String sql = "SELECT COUNT(*)   " 
+        String sql = "SELECT COUNT(*)   "
                 + "FROM dbo.news \n"
                 + "INNER JOIN dbo.category ON category.id = news.categoryid\n"
                 + "WHERE news.title LIKE N'%" + keyword + "%'\n"
@@ -140,6 +139,37 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
                 + "OR news.modifiedby LIKE N'%" + keyword + "%'\n"
                 + "OR name LIKE N'%" + keyword + "%'";
         return count(sql);
+
     }
 
+    @Override
+    public List<NewsModel> findByCategoryCode(Pageble pageble, String categoryCode) {
+        StringBuilder sql = new StringBuilder("SELECT news.id,\n"
+                + "       title,\n"
+                + "       thumbnail,\n"
+                + "       shortdescription,\n"
+                + "       content,\n"
+                + "       categoryid,\n"
+                + "       news.createddate,\n"
+                + "       news.modifieddate,\n"
+                + "       news.createdby,\n"
+                + "       news.modifiedby,\n"
+                + "       category.code,\n"
+                + "       category.name\n"
+                + "FROM news\n"
+                + "    INNER JOIN dbo.category\n"
+                + "        ON category.id = news.categoryid\n"
+                + "WHERE category.code=?");
+        List<NewsModel> news = query(sql.toString(), new NewsMapper(), categoryCode);
+        return news;
+    }
+
+    @Override
+    public Integer getTotalItemsByCategoryCode(String categoryCode) {
+        String sql = "SELECT COUNT(*)   "
+                + "FROM dbo.news \n"
+                + "INNER JOIN dbo.category ON category.id = news.categoryid\n"
+                + "WHERE category.code=?";
+        return count(sql, categoryCode);
+    }
 }

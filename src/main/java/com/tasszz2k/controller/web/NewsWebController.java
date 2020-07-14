@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author TASS
  */
-@WebServlet(name = "NewsWebController", urlPatterns = {"/blog-post", "/post","/search"})
+@WebServlet(name = "NewsWebController", urlPatterns = {"/blog-post", "/post", "/search"})
 public class NewsWebController extends HttpServlet {
 
     @Inject
@@ -56,6 +56,7 @@ public class NewsWebController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -83,6 +84,7 @@ public class NewsWebController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         NewsModel model = FormUtil.toModel(NewsModel.class, request);
         CommentModel comments = FormUtil.toModel(CommentModel.class, request);
         UserModel currentUser = null;
@@ -99,6 +101,7 @@ public class NewsWebController extends HttpServlet {
             view = "/view/web/news/post.jsp";
             request.setAttribute("categories", categoryService.findAll());
         } else if (model.getType().equals(SystemConstant.LIST)) {//model.getType().equals(SystemConstant.LIST)
+            String categoryCode = request.getParameter("categoryCode");
             request.setAttribute("categories", categoryService.findAll());
             if (request.getParameter("page") == null) {
                 model.setType("list");
@@ -110,14 +113,15 @@ public class NewsWebController extends HttpServlet {
 
             Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
                     new Sorter(model.getSortBy(), model.getSortType()));
-            model.setListResult(newsService.findAll(pageble));
-            model.setTotalItems(newsService.getTotalItems());
+            model.setListResult(newsService.findByCategoryCode(pageble, categoryCode));
+            model.setTotalItems(newsService.getTotalItemsByCategoryCode(categoryCode));
             model.setTotalPages((int) Math.ceil((double) model.getTotalItems() / model.getMaxPageItem()));
 //            
             request.setAttribute(SystemConstant.MODEL, model);
+            request.setAttribute(SystemConstant.CATEGORY_CODE, categoryCode);
 
             view = "/view/web/news/blogPost.jsp";
-        }else if (model.getType().equals(SystemConstant.SEARCH)) {//model.getType().equals(SystemConstant.LIST)
+        } else if (model.getType().equals(SystemConstant.SEARCH)) {//model.getType().equals(SystemConstant.LIST)
             String keyword = request.getParameter("keyword");
             request.setAttribute("keyword", keyword);
             request.setAttribute("categories", categoryService.findAll());
@@ -131,7 +135,7 @@ public class NewsWebController extends HttpServlet {
 
             Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
                     new Sorter(model.getSortBy(), model.getSortType()));
-            model.setListResult(newsService.searchByKeyword(pageble,keyword));
+            model.setListResult(newsService.searchByKeyword(pageble, keyword));
             model.setTotalItems(newsService.getTotalResulSearched(keyword));
             model.setTotalPages((int) Math.ceil((double) model.getTotalItems() / model.getMaxPageItem()));
 //            
@@ -141,7 +145,7 @@ public class NewsWebController extends HttpServlet {
         }
 
         MessageUtil.showMessage(request);
-        
+
         request.setAttribute(SystemConstant.COMMENTS, comments);
         request.setAttribute(SystemConstant.MODEL, model);
         request.setAttribute(SystemConstant.CURRENT_USER, currentUser);

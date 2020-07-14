@@ -43,6 +43,7 @@
 
                         <h2 class="text-uppercase text-center text-danger post-title" data-bs-hover-animate="bounce" style="font-size: 40px;">bài viết nổi bật!&nbsp;<br>⬇<br></h2>
                         <h3 class="text-uppercase text-center text-danger post-subtitle" data-aos="zoom-in">====================</h3>
+                        <h4 class="text-uppercase text-center text-success post-subtitle" data-aos="zoom-in">${model.totalItems} bài viết</h4>
 
                         <div class="d-flex justify-content-center h-100" style="margin-top: 5px;width: 320px;margin-right: auto;margin-left: auto;">
                             <div class="text-left searchbar" data-bs-hover-animate="pulse" style="width: 358px;">
@@ -59,8 +60,31 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
+
+
                 <div class="col-md-10 col-lg-8">
+                    <div class="form-group" style="margin: 0 auto; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;">
+                        <form action="${pageContext.request.contextPath}/blog-post" method="get" id="categoryForm">
+                            <input type="hidden" value="list" id="type" name="type" />
+                            <label for="categoryCode"><strong>Thể loại</strong></label>
+                            <select class="form-control" id="categoryCode" name="categoryCode">
+
+                                <option value="all">>> Tất cả bài viết <<</option>
+                                <c:forEach var="item" items="${categories}">
+                                    <option value="${item.code}"  
+                                            <c:if test="${categoryCode eq item.code}">
+                                                selected="selected"
+                                            </c:if>>
+                                        ${item.name}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </form>
+
+                    </div>
+
                     <c:forEach var="item" items="${model.listResult}">
                         <div class="post-preview" data-aos="zoom-in">
                             <c:url var="viewURL" value="/post">
@@ -81,6 +105,7 @@
 
                     <hr>
                     <div class="clearfix">
+                        <h4 class="text-uppercase text-right text-success post-subtitle" data-aos="zoom-in">${(model.page-1)*5+1}&nbsp;⇒${(model.page-1)*5+(model.listResult.size())}/${model.totalItems} bài viết</h4>
                         <button class="btn btn-primary float-right" type="button" onclick="viewMore()">Older
                             Posts&nbsp;⇒</button>
                     </div>
@@ -115,6 +140,10 @@
                     $("#formSubmit").submit();
                 }
             }
+
+            $("#categoryCode").change(function () {
+                $("#categoryForm").submit();
+            });
 
         </script>  
     </body>

@@ -21,5 +21,6 @@ public class SystemConstant {
     public static final String VIEW = "view";
     public static final String CURRENT_USER = "currentUser";
     public static final String COMMENTS = "comments";
+    public static final String CATEGORY_CODE = "categoryCode";
 
 }

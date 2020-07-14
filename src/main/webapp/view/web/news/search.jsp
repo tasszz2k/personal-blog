@@ -43,8 +43,8 @@
 
                         <h2 class="text-uppercase text-center text-danger post-title" data-bs-hover-animate="bounce" style="font-size: 40px;">SEARCH&nbsp;<br>⬇<br></h2>
                         <h3 class="text-uppercase text-center text-danger post-subtitle" data-aos="zoom-in">====================</h3>
-                        <h4 class="text-uppercase text-center text-success post-subtitle" data-aos="zoom-in">${(model.page-1)*5+(model.listResult.size())}/${model.totalItems} bài viết được tìm kiếm</h4>
-                        
+                        <h4 class="text-uppercase text-center text-success post-subtitle" data-aos="zoom-in">${model.totalItems} bài viết được tìm kiếm</h4>
+
                         <div class="d-flex justify-content-center h-100" style="margin-top: 5px;width: 320px;margin-right: auto;margin-left: auto;">
                             <div class="text-left searchbar" data-bs-hover-animate="pulse" style="width: 358px;">
                                 <form id="formSearch" action="${pageContext.request.contextPath}/search" method="get">
@@ -82,6 +82,7 @@
 
                     <hr>
                     <div class="clearfix">
+                        <h4 class="text-uppercase text-right text-success post-subtitle" data-aos="zoom-in">${(model.page-1)*5+1}&nbsp;⇒${(model.page-1)*5+(model.listResult.size())}/${model.totalItems} bài viết</h4>
                         <button class="btn btn-primary float-right" type="button" onclick="viewMore()">Older
                             Posts&nbsp;⇒</button>
                     </div>

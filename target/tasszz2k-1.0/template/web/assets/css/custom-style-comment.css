@@ -51,10 +51,10 @@
 
 .comments .add-comment .commenter-name {
     width: 100%;
-    padding-left: 75px;
+    /* padding-left: 75px; */
     position: absolute;
     top: 20px;
-    left: 0px;
+    left: 60px;
 }
 
 .comments .add-comment input {
