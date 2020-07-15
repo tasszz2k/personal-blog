@@ -69,7 +69,7 @@
                             <div class="form-group"><label for="description"><strong>Register Date</strong></label>
                                 <input class="form-control" type="text" placeholder="Register Date" name="createdDate" id="createdDate" value="<fmt:formatDate pattern="dd/MM/yyyy" value="${currentUser.createdDate}"/>" readonly="" required=""></div>
                             <div class="form-group"><label for="thumbnail"><strong>Link Avatar</strong></label>
-                                <input class="form-control" type="text" placeholder="Link Avatar" name="avatar" id="avatar" value="${currentUser.avatar}" required="">    
+                                <input class="form-control" type="text" placeholder="Paste link avatar here" name="avatar" id="avatar" value="${currentUser.avatar}" required="">    
                             </div>
                         </div>
                     </div>

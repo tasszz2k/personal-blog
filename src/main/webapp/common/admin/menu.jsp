@@ -21,6 +21,12 @@
                 </a>
             </li>
             <li class="nav-item" role="presentation">
+                <a class="nav-link" href="<c:url value="/admin-photo?type=list"/>">
+                    <i class="fas fa-photo-video"></i>
+                    <span>Photo Management</span>
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
                 <a class="nav-link" href="<c:url value="/admin-user?type=list&page=1&maxPageItem=5&sortBy=id&sortType=desc"/>">
                     <i class="far fa-user-circle"></i><span>Acount Management</span>
                 </a></li>

@@ -15,13 +15,16 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/template/admin/assets/fonts/fontawesome-all.min.css">
-        
+
         <script src="${pageContext.request.contextPath}/template/admin/assets/js/jquery.min.js"></script>
 
         <!--Paging-->
         <script src="${pageContext.request.contextPath}/template/paging/jquery.twbsPagination.js"></script>
         <!--<script src="${pageContext.request.contextPath}/template/paging/jquery.twbsPagination.min.js"></script>-->
         <!--Paging-->
+        <!-- gallery -->
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/template/gallery/custom-gallery.css">
+        <!-- gallery -->
         <!--ckediter-->
         <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
         <!--ckediter-->

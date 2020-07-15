@@ -8,6 +8,7 @@ package com.tasszz2k.dao.impl;
 import com.tasszz2k.dao.base.ICommentDAO;
 import com.tasszz2k.mapper.CommentMapper;
 import com.tasszz2k.model.CommentModel;
+import com.tasszz2k.model.UserModel;
 import com.tasszz2k.paging.Pageble;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
@@ -32,8 +33,14 @@ public class CommentDAO extends AbstractDAO<CommentModel> implements ICommentDAO
 
     @Override
     public CommentModel findOne(Long id) {
-        StringBuilder sql = new StringBuilder("SELECT * FROM dbo.comment\n"
-                + "WHERE id = ?");
+        StringBuilder sql = new StringBuilder("SELECT comment.id, comment.content,comment.user_id,comment.news_id,\n"
+                + "	comment.createddate,comment.createdby,\n"
+                + "	dbo.[user].fullname,dbo.[user].avatar,\n"
+                + "	dbo.news.title		\n"
+                + "FROM dbo.comment\n"
+                + "INNER JOIN dbo.[user] ON [user].id = comment.user_id\n"
+                + "INNER JOIN dbo.news ON news.id = comment.news_id\n"
+                + "WHERE  comment.id = ?");
         List<CommentModel> comments = query(sql.toString(), new CommentMapper(), id);
         return comments.isEmpty() ? null : comments.get(0);
     }
@@ -84,6 +91,16 @@ public class CommentDAO extends AbstractDAO<CommentModel> implements ICommentDAO
         String sql = "SELECT COUNT(*) FROM dbo.comment\n"
                 + "WHERE news_id = ?";
         return count(sql, newsId);
+    }
+
+    @Override
+    public void update(CommentModel commentUpdate) {
+        StringBuilder sql = new StringBuilder("UPDATE dbo.comment\n"
+                + "SET content = ?,\n"
+                + "	modifieddate = GETDATE(),\n"
+                + "	modifiedby = ?\n"
+                + "WHERE id = ?");
+        update(sql.toString(), commentUpdate.getContent(), commentUpdate.getModifiedBy(), commentUpdate.getId());
     }
 
 }

@@ -49,7 +49,7 @@
                             <h1 class="text-uppercase text-center text-danger post-title">${model.title}</h1>
                             <p class="post-subtitle text-center post-meta" style="padding-bottom: 0px;margin-bottom: 0px;">
                                 "${model.shortDescription}"</p>
-                            <p class="post-meta" style="margin: 0px;"> Thể loại&nbsp; <a href="#">${model.categoryName}</a>
+                            <p class="post-meta" style="margin: 0px;"> Thể loại&nbsp; <a href="${pageContext.request.contextPath}/blog-post?type=list&categoryCode=${model.categoryCode}">${model.categoryName}</a>
                             </p>
                             <p class="post-meta">Đăng bởi&nbsp;
                                 <a href="">

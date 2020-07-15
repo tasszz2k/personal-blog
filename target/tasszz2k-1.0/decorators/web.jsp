@@ -32,6 +32,9 @@
         <!-- comment -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/template/web/assets/css/custom-style-comment.css">
         <!-- comment -->
+        <!-- gallery -->
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/template/gallery/custom-gallery.css">
+        <!-- gallery -->
         <script src="${pageContext.request.contextPath}/template/admin/assets/js/jquery.min.js"></script>
 
     </head>

@@ -13,6 +13,7 @@ import com.tasszz2k.service.base.ICommentService;
 import com.tasszz2k.service.base.INewsService;
 import com.tasszz2k.sort.Sorter;
 import com.tasszz2k.utils.FormUtil;
+import com.tasszz2k.utils.MessageUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
@@ -80,14 +81,21 @@ public class CommentController extends HttpServlet {
         CommentModel model = FormUtil.toModel(CommentModel.class, request);
         String view = "";
         if (model.getType().equals(SystemConstant.LIST)) {
-             Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
+            Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
                     new Sorter(model.getSortBy(), model.getSortType()));
             model.setListResult(commentService.findAll(pageble));
             model.setTotalItems(commentService.getTotalItems());
             model.setTotalPages((int) Math.ceil((double) model.getTotalItems() / model.getMaxPageItem()));
 
             view = "/view/admin/listComments.jsp";
+        } else if (model.getType().equals(SystemConstant.UPDATE)) {
+            if (model.getId() != null) {
+                model = commentService.findOne(model.getId());
+            }
+
+            view = "/view/admin/updateComment.jsp";
         }
+        MessageUtil.showMessage(request);
         request.setAttribute(SystemConstant.MODEL, model);
         RequestDispatcher rd = request.getRequestDispatcher(view);
         rd.forward(request, response);

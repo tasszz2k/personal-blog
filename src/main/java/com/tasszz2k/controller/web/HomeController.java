@@ -6,13 +6,14 @@
 package com.tasszz2k.controller.web;
 
 import com.tasszz2k.constant.SystemConstant;
-import com.tasszz2k.filter.AuthorizationFilter;
 import com.tasszz2k.model.NewsModel;
+import com.tasszz2k.model.PhotoModel;
 import com.tasszz2k.model.UserModel;
 import com.tasszz2k.paging.PageRequest;
 import com.tasszz2k.paging.Pageble;
 import com.tasszz2k.service.base.ICategoryService;
 import com.tasszz2k.service.base.INewsService;
+import com.tasszz2k.service.base.IPhotoService;
 import com.tasszz2k.service.base.IUserService;
 import com.tasszz2k.sort.Sorter;
 import com.tasszz2k.utils.FormUtil;
@@ -32,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author TASS
  */
-@WebServlet(name = "HomeController", urlPatterns = {"/home-page", "/about", "/moments", "/login", "/logout", "/register"})
+@WebServlet(name = "HomeController", urlPatterns = {"/home-page", "/about", "/login", "/logout", "/register"})
 public class HomeController extends HttpServlet {
 
     @Inject
@@ -43,6 +44,9 @@ public class HomeController extends HttpServlet {
 
     @Inject
     private INewsService newsService;
+
+    @Inject
+    private IPhotoService photoService;
 
     ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 
@@ -124,6 +128,13 @@ public class HomeController extends HttpServlet {
             model.setTotalItems(newsService.getTotalItems());
             model.setTotalPages((int) Math.ceil((double) model.getTotalItems() / model.getMaxPageItem()));
 //            
+//            photo
+            PhotoModel photo = FormUtil.toModel(PhotoModel.class, request);
+            //set list result
+            photo.setListResult(photoService.findAll());
+            photo.setTotalItems(photoService.getTotalItems());
+//            photo
+            request.setAttribute(SystemConstant.PHOTO, photo);
             request.setAttribute(SystemConstant.MODEL, model);
             request.setAttribute(SystemConstant.CURRENT_USER, currentUser);
 

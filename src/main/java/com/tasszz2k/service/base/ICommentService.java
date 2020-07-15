@@ -6,6 +6,7 @@
 package com.tasszz2k.service.base;
 
 import com.tasszz2k.model.CommentModel;
+import com.tasszz2k.model.UserModel;
 import com.tasszz2k.paging.Pageble;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public interface ICommentService {
     CommentModel save(CommentModel commentModel);
+    CommentModel update(CommentModel commentUpdate);
     CommentModel findOne(Long id);
     List<CommentModel> findAll(Pageble pageble);
     Integer getTotalItems();

@@ -78,7 +78,7 @@
                                 <h2 class="post-title">${item.title}</h2>
                                 <h3 class="post-subtitle">${item.shortDescription}</h3>
                             </a>
-                            <p class="post-meta" style="margin: 0px;"> Thể loại&nbsp; <a href="#">${item.categoryName}</a></p>
+                            <p class="post-meta" style="margin: 0px;"> Thể loại&nbsp; <a href="${pageContext.request.contextPath}/blog-post?type=list&categoryCode=${item.categoryCode}">${item.categoryName}</a></p>
                             <p class="post-meta">Đăng bởi&nbsp;
                                 <a href="">
                                     <nobr class="text-uppercase">${item.createdBy}</nobr>
@@ -101,36 +101,34 @@
 
                     <hr>
                     <hr>
+                    <!--gallery-->
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-10 col-lg-8 text-center mx-auto">
+                            <div class="col-md-10 col-lg-8 text-center mx-auto aos-init aos-animate" data-aos="fade-down">
                                 <h1 class="text-uppercase text-center">MY GALLERY</h1>
-                                <p>Short descripttion</p>
+                                <p>Cùng dạo qua một vài bức ảnh cùng mình nhé ^^</p>
                             </div>
                         </div>
                     </div>
+
                     <div class="container">
-                        <div class="row fbox3">
-                            <div class="col-sm-4 d-flex justify-content-center align-items-center">
-                                <a data-fancybox="gallery" data-caption="Hero Image Nature" href="${pageContext.request.contextPath}/template/web/assets/img/hero-background-nature.jpg"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/hero-background-nature.jpg" alt="Hero Image Nature"></a>
-                            </div>
-                            <div class="col-sm-4 d-flex justify-content-center align-items-center">
-                                <a data-fancybox="gallery" data-caption="Hero Image Technology" href="${pageContext.request.contextPath}/template/web/assets/img/hero-background-technology.jpg"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/hero-background-technology.jpg" alt="Hero Image Technology"></a>
-                            </div>
-                            <div class="col-sm-4 d-flex justify-content-center align-items-center">
-                                <a data-fancybox="gallery" data-caption="Hero Image Travel" href="${pageContext.request.contextPath}/template/web/assets/img/hero-background-travel.jpg"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/hero-background-travel.jpg" alt="Hero Image Travel"></a>
-                            </div>
-                            <div class="col-sm-4 d-flex justify-content-center align-items-center">
-                                <a data-fancybox="gallery" data-caption="Hero Image Food" href="${pageContext.request.contextPath}/template/web/assets/img/hero-background-food.jpg"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/hero-background-food.jpg" alt="Hero Image Food"></a>
-                            </div>
-                            <div class="col-sm-4 d-flex justify-content-center align-items-center">
-                                <a data-fancybox="gallery" data-caption="Hero Image Music" href="${pageContext.request.contextPath}/template/web/assets/img/hero-background-music.jpg"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/hero-background-music.jpg" alt="Hero Image Music"></a>
-                            </div>
-                            <div class="col-sm-4 d-flex justify-content-center align-items-center">
-                                <a data-fancybox="gallery" data-caption="Hero Image Photography" href="${pageContext.request.contextPath}/template/web/assets/img/hero-background-photography.jpg"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/hero-background-photography.jpg" alt="Hero Image Photography"></a>
-                            </div>
+                        <!-- Grid row -->
+                        <div class="gallery" id="gallery">
+
+                            <c:forEach var="item" items="${photo.listResult}">
+                                <!-- Grid column -->
+                                <div class="mb-3 pics animation aos-init aos-animate" data-aos="fade-down">
+                                    <a data-fancybox="gallery" data-caption="${item.shortDescription}" href="${item.image}">
+                                        <img class="img-fluid" src="${item.image}" alt="${item.title}">
+                                    </a>
+                                </div>
+                                <!-- Grid column -->
+                            </c:forEach>
+
                         </div>
+                        <!-- Grid row -->
                     </div>
+                    <!--gallery-->
                     <hr>
 
                 </div>

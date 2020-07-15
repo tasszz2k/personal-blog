@@ -6,6 +6,7 @@
 package com.tasszz2k.dao.base;
 
 import com.tasszz2k.model.CommentModel;
+import com.tasszz2k.model.UserModel;
 import com.tasszz2k.paging.Pageble;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public interface ICommentDAO  extends GenericDAO<CommentModel>{
 
     Long save(CommentModel commentModel);
+    void update(CommentModel commentUpdate);
     CommentModel findOne(Long id);
     List<CommentModel> findAll(Pageble pageble);
     Integer getTotalItems();

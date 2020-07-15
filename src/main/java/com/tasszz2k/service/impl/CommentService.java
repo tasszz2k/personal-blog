@@ -7,6 +7,7 @@ package com.tasszz2k.service.impl;
 
 import com.tasszz2k.dao.base.ICommentDAO;
 import com.tasszz2k.model.CommentModel;
+import com.tasszz2k.model.UserModel;
 import com.tasszz2k.paging.Pageble;
 import com.tasszz2k.service.base.ICommentService;
 import java.util.List;
@@ -53,6 +54,12 @@ public class CommentService implements ICommentService {
     @Override
     public Integer getTotalItemsByNewsId(Long newsId) {
         return commentDAO.getTotalItemsByNewsId(newsId);
+    }
+
+    @Override
+    public CommentModel update(CommentModel commentUpdate) {
+        commentDAO.update(commentUpdate);
+        return findOne(commentUpdate.getId());
     }
 
 }

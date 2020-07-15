@@ -11,6 +11,7 @@ import com.tasszz2k.model.UserModel;
 
 import com.tasszz2k.paging.PageRequest;
 import com.tasszz2k.paging.Pageble;
+import com.tasszz2k.service.base.ICategoryService;
 import com.tasszz2k.service.base.IUserService;
 import com.tasszz2k.sort.Sorter;
 import com.tasszz2k.utils.FormUtil;
@@ -35,6 +36,9 @@ public class UserController extends HttpServlet {
 
     @Inject
     private IUserService userService;
+
+    @Inject
+    private ICategoryService categoryService;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -86,10 +90,10 @@ public class UserController extends HttpServlet {
             currentUser = ((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL"));
 
             if (currentUser != null && model.getId() == currentUser.getId()) {
-                model.setRole(new RoleModel(currentUser.getRole().getId(),currentUser.getRole().getName(),currentUser.getRole().getCode()));
+                model.setRole(new RoleModel(currentUser.getRole().getId(), currentUser.getRole().getName(), currentUser.getRole().getCode()));
                 SessionUtil.getInstance().putValue(request, "USERMODEL", model);
                 view = "/view/profile.jsp";
-            }else{
+            } else {
                 response.sendRedirect("home-page");
                 return;
             }
@@ -104,7 +108,7 @@ public class UserController extends HttpServlet {
         }
 
         MessageUtil.showMessage(request);
-
+        request.setAttribute("categories", categoryService.findAll());
         request.setAttribute(SystemConstant.CURRENT_USER, model);
         RequestDispatcher rd = request.getRequestDispatcher(view);
         rd.forward(request, response);

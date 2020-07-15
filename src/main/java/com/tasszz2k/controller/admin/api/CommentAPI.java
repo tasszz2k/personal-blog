@@ -7,8 +7,10 @@ package com.tasszz2k.controller.admin.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tasszz2k.model.CommentModel;
+import com.tasszz2k.model.UserModel;
 import com.tasszz2k.service.base.ICommentService;
 import com.tasszz2k.utils.HttpUtils;
+import com.tasszz2k.utils.SessionUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.inject.Inject;
@@ -24,10 +26,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CommentAPI", urlPatterns = {"/api-admin-comment"})
 public class CommentAPI extends HttpServlet {
-    
+
     @Inject
     private ICommentService commentService;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -90,6 +92,19 @@ public class CommentAPI extends HttpServlet {
         commentModel = commentService.save(commentModel);
         mapper.writeValue(response.getOutputStream(), commentModel);
 
+    }
+
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+
+        ObjectMapper mapper = new ObjectMapper();
+        CommentModel commentUpdate = HttpUtils.of(request.getReader()).toModel(CommentModel.class);
+        commentUpdate.setModifiedBy(((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL")).getUserName());
+//        commentUpdate.setModifiedBy("admin");
+        commentUpdate = commentService.update(commentUpdate);
+        mapper.writeValue(response.getOutputStream(), commentUpdate);
     }
 
     /**

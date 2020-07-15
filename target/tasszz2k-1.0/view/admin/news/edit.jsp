@@ -141,11 +141,11 @@
                                                 <td>${item.fullNameUserComment}</td>
                                                 <td>${item.titleNewsComment}</td>
                                                 <td>
-                                                    <c:url var="editURL" value="/admin-news">
-                                                        <c:param name="type" value="edit" />
+                                                    <c:url var="updateURL" value="/admin-comment">
+                                                        <c:param name="type" value="update" />
                                                         <c:param name="id" value="${item.id}" />
                                                     </c:url>
-                                                    <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip" title="Update article" href="#">
+                                                    <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip" title="Update Comment" href="${updateURL}">
                                                         <i class="fa fa-edit" aria-hidden="true"></i>
                                                     </a>
                                                 </td>

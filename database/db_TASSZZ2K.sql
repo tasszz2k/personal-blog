@@ -110,6 +110,24 @@ ALTER TABLE dbo.[user]
 ADD UNIQUE (username);
 
 
+CREATE TABLE [photo](
+	id bigint NOT NULL PRIMARY KEY IDENTITY(1,1),
+	userid BIGINT NOT NULL, 
+	title NVARCHAR(255) NOT NULL,
+	[image] NVARCHAR(255) NULL,
+	shortdescription NVARCHAR(255) NULL,
+	createddate DATETIME NULL,
+	modifieddate DATETIME NULL,
+	createdby NVARCHAR(255) NULL,
+	modifiedby NVARCHAR(255) NULL
+);
+GO
+
+ALTER TABLE [photo] ADD CONSTRAINT fk_photo_user FOREIGN KEY (userid) REFERENCES dbo.[user](id);
+
+
+
+
 
 /*============= SELECT ====================*/
 
