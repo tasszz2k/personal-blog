@@ -161,29 +161,31 @@
             var totalPages = ${currentUser.totalPages}; //50
             var currentPage = ${currentUser.page}; //1
             var limit = 5; //; 
-            $(function() {
-            window.pagObj = $("#pagination")
-                    .twbsPagination({
-                    totalPages: totalPages,
+            $(function () {
+                window.pagObj = $("#pagination")
+                        .twbsPagination({
+                            totalPages: totalPages,
                             visiblePages: 5,
                             startPage: currentPage,
-                            onPageClick: function(event, page) {
-                            if (currentPage != page) {
-                            //console.info(page + " (from options)");
-                            $("#maxPageItem").val(limit);
-                            $("#page").val(page);
-                            $("#sortBy").val('id');
-                            $("#sortType").val('desc');
-                            $("#type").val('list');
-                            $("#formSubmit").submit();
-                            }
+                            onPageClick: function (event, page) {
+                                if (currentPage != page) {
+                                    //console.info(page + " (from options)");
+                                    $("#maxPageItem").val(limit);
+                                    $("#page").val(page);
+                                    $("#sortBy").val('id');
+                                    $("#sortType").val('desc');
+                                    $("#type").val('list');
+                                    $("#formSubmit").submit();
+                                }
                             },
-                    })
-                    .on("page", function(event, page) {
-                    console.info(page + " (from event listening)");
-                    });
+                        })
+                        .on("page", function (event, page) {
+                            console.info(page + " (from event listening)");
+                        });
             });
-
+            $("#checkAll").click(function () {
+                $('input:checkbox').not(this).prop('checked', this.checked);
+            });
         </script>
     </body>
 

@@ -5,9 +5,19 @@
  */
 package com.tasszz2k.controller.admin;
 
-import com.tasszz2k.controller.web.*;
+import com.tasszz2k.model.CommentModel;
+import com.tasszz2k.model.NewsModel;
+import com.tasszz2k.model.PhotoModel;
+import com.tasszz2k.model.UserModel;
+import com.tasszz2k.service.base.ICategoryService;
+import com.tasszz2k.service.base.ICommentService;
+import com.tasszz2k.service.base.INewsService;
+import com.tasszz2k.service.base.IPhotoService;
+import com.tasszz2k.service.base.IUserService;
+import com.tasszz2k.utils.FormUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +31,21 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "AdminHomeController", urlPatterns = {"/admin-home"})
 public class AdminHomeController extends HttpServlet {
+
+    @Inject
+    private INewsService newsService;
+
+    @Inject
+    private ICommentService commentService;
+
+    @Inject
+    private IUserService userService;
+
+    @Inject
+    private ICategoryService categoryService;
+
+    @Inject
+    private IPhotoService photoService;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +65,7 @@ public class AdminHomeController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeController</title>");            
+            out.println("<title>Servlet HomeController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet HomeController at " + request.getContextPath() + "</h1>");
@@ -61,9 +86,27 @@ public class AdminHomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+        UserModel user = FormUtil.toModel(UserModel.class, request);
+        NewsModel news = FormUtil.toModel(NewsModel.class, request);
+        CommentModel comment = FormUtil.toModel(CommentModel.class, request);
+        PhotoModel photo = FormUtil.toModel(PhotoModel.class, request);
+
+        user.setTotalItems(userService.getTotalItems());
+        news.setTotalItems(newsService.getTotalItems());
+        comment.setTotalItems(commentService.getTotalItems());
+        photo.setTotalItems(photoService.getTotalItems());
+
+        request.setAttribute("user", user);
+        request.setAttribute("news", news);
+        request.setAttribute("comment", comment);
+        request.setAttribute("photo", photo);
+
         RequestDispatcher rd = request.getRequestDispatcher("view/admin/home.jsp");
         rd.forward(request, response);
-        
+
     }
 
     /**

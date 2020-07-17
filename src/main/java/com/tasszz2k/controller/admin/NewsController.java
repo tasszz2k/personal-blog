@@ -5,6 +5,7 @@
  */
 package com.tasszz2k.controller.admin;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tasszz2k.constant.SystemConstant;
 import com.tasszz2k.model.CommentModel;
 import com.tasszz2k.model.NewsModel;
@@ -15,6 +16,7 @@ import com.tasszz2k.service.base.ICommentService;
 import com.tasszz2k.service.base.INewsService;
 import com.tasszz2k.sort.Sorter;
 import com.tasszz2k.utils.FormUtil;
+import com.tasszz2k.utils.HttpUtils;
 import com.tasszz2k.utils.MessageUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,7 +40,7 @@ public class NewsController extends HttpServlet {
 
     @Inject
     private ICategoryService categoryService;
-    
+
     @Inject
     private ICommentService commentService;
 
@@ -128,7 +130,13 @@ public class NewsController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        processRequest(request, response);
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        NewsModel newsModel = HttpUtils.of(request.getReader()).toModel(NewsModel.class);
+        if (newsModel.getType().equals("delete")) {
+            newsService.delete(newsModel.getIds());
+            mapper.writeValue(response.getOutputStream(), "{}");
+        }
     }
 
     /**

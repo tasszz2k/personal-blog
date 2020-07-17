@@ -104,11 +104,11 @@ public class NewsAPI extends HttpServlet {
     }
 
     /**
-     * 
+     *
      * @param request
      * @param response
      * @throws ServletException
-     * @throws IOException 
+     * @throws IOException
      */
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
@@ -125,23 +125,17 @@ public class NewsAPI extends HttpServlet {
 
     }
 
-    /***
-     * 
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException 
-     */
-    @Override
+
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
 
         ObjectMapper mapper = new ObjectMapper();
         NewsModel newsModel = HttpUtils.of(request.getReader()).toModel(NewsModel.class);
         newsService.delete(newsModel.getIds());
-        mapper.writeValue(response.getOutputStream(), "{}");
+        mapper.writeValue(response.getOutputStream(), "{sakjdhsadkj}");
     }
 
     /**

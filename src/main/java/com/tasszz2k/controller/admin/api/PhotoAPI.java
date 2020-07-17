@@ -122,6 +122,28 @@ public class PhotoAPI extends HttpServlet {
     }
 
     /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+
+        ObjectMapper mapper = new ObjectMapper();
+        PhotoModel photoModel = HttpUtils.of(request.getReader()).toModel(PhotoModel.class);
+//        photoModel.setModifiedBy("tass");
+        photoModel.setModifiedBy("tass");
+
+        photoModel = photoService.update(photoModel);
+        mapper.writeValue(response.getOutputStream(), photoModel);
+    }
+
+    /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description

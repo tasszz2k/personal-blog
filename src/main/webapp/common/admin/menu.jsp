@@ -28,7 +28,7 @@
             </li>
             <li class="nav-item" role="presentation">
                 <a class="nav-link" href="<c:url value="/admin-user?type=list&page=1&maxPageItem=5&sortBy=id&sortType=desc"/>">
-                    <i class="far fa-user-circle"></i><span>Acount Management</span>
+                    <i class="fas fa-users-cog"></i><span>Account Management</span>
                 </a></li>
             <li class="nav-item" role="presentation"><a class="nav-link" href="home-page"><i class="fas fa-home"></i><span>Back to Home page</span></a></li>
         </ul>

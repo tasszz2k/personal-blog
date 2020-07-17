@@ -159,7 +159,8 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
                 + "FROM news\n"
                 + "    INNER JOIN dbo.category\n"
                 + "        ON category.id = news.categoryid\n"
-                + "WHERE category.code=?");
+                + "WHERE category.code=? "
+                + "ORDER BY news.id DESC");
         List<NewsModel> news = query(sql.toString(), new NewsMapper(), categoryCode);
         return news;
     }

@@ -38,4 +38,15 @@ public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategory
         return category.isEmpty() ? null : category.get(0);
     }
 
+    @Override
+    public List<CategoryModel> report() {
+        String sql = "SELECT category.id,category.name,category.code,\n"
+                + "(SELECT COUNT(*) \n"
+                + "	FROM dbo.news\n"
+                + "	WHERE categoryid=category.id) AS 'totalnews',\n"
+                + "((SELECT COUNT(*) FROM news WHERE categoryid = category.id) *100 / (SELECT COUNT(*) FROM news)) AS 'percent'\n"
+                + "FROM dbo.category";
+        return query(sql, new CategoryMapper());
+    }
+
 }

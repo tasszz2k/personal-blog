@@ -168,6 +168,9 @@
                                 console.info(page + " (from event listening)");
                             });
                 });
+                $("#checkAll").click(function () {
+                    $('input:checkbox').not(this).prop('checked', this.checked);
+                });
             </script>
     </body>
 </html>

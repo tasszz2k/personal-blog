@@ -14,6 +14,8 @@ public class CategoryModel extends AbstractModel<CategoryModel> {
     private Long id;
     private String name;
     private String code;
+    private Integer percent;
+    
 
     public CategoryModel() {
     }
@@ -23,6 +25,16 @@ public class CategoryModel extends AbstractModel<CategoryModel> {
         this.name = name;
         this.code = code;
     }
+
+    public Integer getPercent() {
+        return percent;
+    }
+
+    public void setPercent(Integer percent) {
+        this.percent = percent;
+    }
+    
+    
 
     public Long getId() {
         return id;

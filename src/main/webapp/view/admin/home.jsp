@@ -3,7 +3,8 @@
     Created on : Jun 16, 2020, 1:25:08 PM
     Author     : TASS
 --%>
-
+<%@include  file="/common/taglib.jsp" %>
+<c:url var="APIurl" value="/api-admin-category"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,10 +22,10 @@
                         <div class="card-body">
                             <div class="row align-items-center no-gutters">
                                 <div class="col mr-2">
-                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Earnings (monthly)</span></div>
-                                    <div class="text-dark font-weight-bold h5 mb-0"><span>$40,000</span></div>
+                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Total Posts</span></div>
+                                    <div class="text-dark font-weight-bold h5 mb-0"><span>${news.totalItems}</span></div>
                                 </div>
-                                <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                                <div class="col-auto"><i class="fas fa-table fa-2x text-gray-300"></i></div>
                             </div>
                         </div>
                     </div>
@@ -34,10 +35,10 @@
                         <div class="card-body">
                             <div class="row align-items-center no-gutters">
                                 <div class="col mr-2">
-                                    <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Earnings (annual)</span></div>
-                                    <div class="text-dark font-weight-bold h5 mb-0"><span>$215,000</span></div>
+                                    <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Total Photos</span></div>
+                                    <div class="text-dark font-weight-bold h5 mb-0"><span>${photo.totalItems}</span></div>
                                 </div>
-                                <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
+                                <div class="col-auto"><i class="fas fa-photo-video fa-2x text-gray-300"></i></div>
                             </div>
                         </div>
                     </div>
@@ -47,19 +48,19 @@
                         <div class="card-body">
                             <div class="row align-items-center no-gutters">
                                 <div class="col mr-2">
-                                    <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Tasks</span></div>
+                                    <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Total Users</span></div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
-                                            <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>50%</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>${user.totalItems}</span></div>
                                         </div>
-                                        <div class="col">
-                                            <div class="progress progress-sm">
-                                                <div class="progress-bar bg-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="sr-only">50%</span></div>
-                                            </div>
-                                        </div>
+                                        <!--                                        <div class="col">
+                                                                                    <div class="progress progress-sm">
+                                                                                        <div class="progress-bar bg-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="sr-only">50%</span></div>
+                                                                                    </div>
+                                                                                </div>-->
                                     </div>
                                 </div>
-                                <div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i></div>
+                                <div class="col-auto"><i class="fas fa-users-cog"></i></div>
                             </div>
                         </div>
                     </div>
@@ -69,8 +70,8 @@
                         <div class="card-body">
                             <div class="row align-items-center no-gutters">
                                 <div class="col mr-2">
-                                    <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Pending Requests</span></div>
-                                    <div class="text-dark font-weight-bold h5 mb-0"><span>18</span></div>
+                                    <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Total Comments</span></div>
+                                    <div class="text-dark font-weight-bold h5 mb-0"><span>${comment.totalItems}</span></div>
                                 </div>
                                 <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
                             </div>
@@ -78,6 +79,49 @@
                     </div>
                 </div>
             </div>
+            <!--============================================================================================================-->
+            <div class="row">
+                <div class="col-lg-12 col-xl-12">
+                    <div class="card shadow mb-10">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="text-primary font-weight-bold m-0">Statistics articles</h6>
+                            <div class="dropdown no-arrow">
+                                <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
+                                     role="menu">
+                                    <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a></div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="chartContainer" class="chart-area" style="height: 370px; width: 100%; margin: 0px auto;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!--============================================================================================================-->
+            <div class="row">
+                <div class="col-lg-12 col-xl-12">
+                    <div class="card shadow mb-10">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="text-primary font-weight-bold m-0">Statistics articles</h6>
+                            <div class="dropdown no-arrow">
+                                <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
+                                     role="menu">
+                                    <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a></div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="chartContainer2" class="chart-area" style="height: 370px; width: 100%; margin: 0px auto;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!--============================================================================================================-->
             <div class="row">
                 <div class="col-lg-7 col-xl-8">
                     <div class="card shadow mb-4">
@@ -232,5 +276,102 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            var dataResponse;
+            window.onload = function () {
+                report();
+                console.log(dataResponse);
+                var dataTransformNamePercent = transformDataNamePercent(dataResponse);
+                console.log(dataTransformNamePercent);
+                var chart1 = new CanvasJS.Chart("chartContainer", {
+                    theme: "light2", // "light1", "light2", "dark1", "dark2"
+                    exportEnabled: true,
+                    animationEnabled: true,
+                    title: {
+                        text: "Statistics articles by category"
+                    },
+                    data: [{
+                            type: "pie",
+                            startAngle: 25,
+                            toolTipContent: "<b>{label}</b>: {y}%",
+                            showInLegend: "true",
+                            legendText: "{label}",
+                            indexLabelFontSize: 16,
+                            indexLabel: "{label} - {y}%",
+                            dataPoints: dataTransformNamePercent
+                        }]
+                });
+                chart1.render();
+
+                //==========================================================//
+                var dataTransformNameTotalItems = transformDataNameTotalItems(dataResponse);
+                console.log(dataTransformNameTotalItems);
+                var chart2 = new CanvasJS.Chart("chartContainer2", {
+                    animationEnabled: true,
+                    theme: "light2", // "light1", "light2", "dark1", "dark2"
+                    title: {
+                        text: "Total Articles"
+                    },
+                    axisY: {
+                        title: "Total Articles"
+                    },
+                    data: [{
+                            type: "column",
+                            showInLegend: true,
+                            legendMarkerColor: "grey",
+                            legendText: "--- = 2 articles",
+                            dataPoints: dataTransformNameTotalItems
+                        }]
+                });
+                chart2.render();
+
+            }
+
+
+            function transformDataNamePercent(data) {
+                var dataTransform = [];
+                data.forEach(function (item) {
+                    var element = {y: item.percent, label: item.name};
+                    dataTransform.push(element);
+                })
+                return dataTransform;
+            }
+            function transformDataNameTotalItems(data) {
+                var dataTransform = [];
+                data.forEach(function (item) {
+                    var element = {y: item.totalItems, label: item.name};
+                    dataTransform.push(element);
+                })
+                return dataTransform;
+            }
+
+
+            function report() {
+                $.ajax({
+                    url: '${APIurl}',
+                    type: 'GET',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    async: !1,
+                    success: function (result) {
+                        console.log(result);
+                        dataResponse = result;
+                    },
+                    error: function (error) {
+                        console.log(result);
+                        console.log(error);
+                        alert('Empty Data');
+                    }
+                });
+            }
+
+        </script>
+
+        <!--canvas-->
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <!--canvas-->
+
+
     </body>
 </html>
