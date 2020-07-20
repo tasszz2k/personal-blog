@@ -72,28 +72,59 @@
                 </div>
             </div>
             <hr style="width:50%;">
+
+
+            <!--gallery-->
+
+
             <div class="container">
-                <div class="row fbox3">
-                    <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                <!-- Grid row -->
+                <div class="gallery" id="gallery">
+
+
+                    <!-- Grid column -->
+                    <div class="mb-3 pics animation" data-aos="fade-down">
                         <a data-fancybox="gallery" data-caption="Logo tớ nè #TASS" href="${pageContext.request.contextPath}/template/web/assets/img/Logo_TASS.png"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/Logo_TASS.png" alt="My Logo #TASS"></a>
                     </div>
-                    <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="mb-3 pics animation" data-aos="fade-down">
                         <a data-fancybox="gallery" data-caption="Ảnh tớ nè :3" href="${pageContext.request.contextPath}/template/web/assets/img/AvatarProfileTASS.png"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/AvatarProfileTASS.png" alt="Ảnh tớ nè" ></a>
+
                     </div>
-                    <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="mb-3 pics animation" data-aos="fade-down">
                         <a data-fancybox="gallery" data-caption="Cuốn truyện tớ thích nhất của bác Ánh nè #NXC1CT" href="${pageContext.request.contextPath}/template/web/assets/img/quoteNNa.jpg"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/quoteNNa.jpg" alt="#NXC1CT"></a>
+
                     </div>
-                    <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="mb-3 pics animation" data-aos="fade-down">
                         <a data-fancybox="gallery" data-caption="CLB JS tớ nè" href="${pageContext.request.contextPath}/template/web/assets/img/js2.png"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/js2.png" alt="JsClub"></a>
+
                     </div>
-                    <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="mb-3 pics animation" data-aos="fade-down">
                         <a data-fancybox="gallery" data-caption="*Người bạn đồng hành* trên mọi nẻo đường của tớ nè :v" href="${pageContext.request.contextPath}/template/web/assets/img/me.jpeg"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/me.jpeg" alt="tổ bee"></a>
+
                     </div>
-                    <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="mb-3 pics animation" data-aos="fade-down">
                         <a data-fancybox="gallery" data-caption="Ơ, ảnh tớ tiếp nè :D" href="${pageContext.request.contextPath}/template/web/assets/img/lop10.jpg"><img class="img-fluid" src="${pageContext.request.contextPath}/template/web/assets/img/lop10.jpg" alt="ảnh tớ tiếp nè"></a>
+
                     </div>
+                    <!-- Grid column -->
+
+
                 </div>
+                <!-- Grid row -->
             </div>
+            <!--gallery-->
+
+
             <hr>
         </div>
 

@@ -26,5 +26,6 @@ public interface INewsDAO extends GenericDAO<NewsModel> {
     Integer getTotalResulSearched(String keyword);
     Integer getTotalItemsByCategoryCode(String categoryCode);
     List<NewsModel> findByCategoryCode(Pageble pageble, String categoryCode);
+    List<NewsModel> report();
     
 }

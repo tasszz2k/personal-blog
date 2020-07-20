@@ -109,4 +109,9 @@ public class NewsService implements INewsService {
         }
     }
 
+    @Override
+    public List<NewsModel> report() {
+        return newsDAO.report();
+    }
+
 }

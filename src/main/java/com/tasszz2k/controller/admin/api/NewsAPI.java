@@ -9,11 +9,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tasszz2k.model.NewsModel;
 import com.tasszz2k.model.UserModel;
 import com.tasszz2k.service.base.INewsService;
-import com.tasszz2k.service.impl.NewsService;
 import com.tasszz2k.utils.HttpUtils;
 import com.tasszz2k.utils.SessionUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -73,12 +73,11 @@ public class NewsAPI extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
 
-//        ObjectMapper mapper = new ObjectMapper();
-//        
-//        
-//        NewsModel newsModel = HttpUtils.of(request.getReader()).toModel(NewsModel.class);
-//        newsModel = newsService.save(newsModel);
-//        mapper.writeValue(response.getOutputStream(), newsModel);
+        ObjectMapper mapper = new ObjectMapper();
+        NewsModel newsModel = HttpUtils.of(request.getReader()).toModel(NewsModel.class);
+        List<NewsModel> listNews = newsService.report();
+        mapper.writeValue(response.getOutputStream(), listNews);
+        
         processRequest(request, response);
     }
 
@@ -124,7 +123,6 @@ public class NewsAPI extends HttpServlet {
         mapper.writeValue(response.getOutputStream(), newsUpdate);
 
     }
-
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

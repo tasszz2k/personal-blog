@@ -18,6 +18,7 @@ public class NewsModel extends AbstractModel<NewsModel> {
     private Long categoryId;
     private String categoryCode;
     private String categoryName;
+    private Integer percent;
 
     public NewsModel() {
     }
@@ -28,6 +29,14 @@ public class NewsModel extends AbstractModel<NewsModel> {
         this.shortDescription = shortDescription;
         this.content = content;
         this.categoryId = categoryId;
+    }
+
+    public Integer getPercent() {
+        return percent;
+    }
+
+    public void setPercent(Integer percent) {
+        this.percent = percent;
     }
 
     public String getCategoryName() {

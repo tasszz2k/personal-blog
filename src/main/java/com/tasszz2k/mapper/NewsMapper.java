@@ -24,7 +24,10 @@ public class NewsMapper implements RowMapper<NewsModel> {
             NewsModel news = new NewsModel();
             news.setId(resultSet.getLong("id"));
             news.setTitle(resultSet.getString("title"));
-            news.setContent(resultSet.getString("content"));
+            try {
+                news.setContent(resultSet.getString("content"));
+            } catch (Exception e) {
+            }
             news.setCategoryId(resultSet.getLong("categoryid"));
             news.setThumbnail(resultSet.getString("thumbnail"));
             news.setShortDescription(resultSet.getString("shortdescription"));
@@ -40,9 +43,16 @@ public class NewsMapper implements RowMapper<NewsModel> {
             ResultSetMetaData rsmd = resultSet.getMetaData();
             //getting the column type
             int columnCount = rsmd.getColumnCount();
-            if (columnCount > 10) {
+            try {
                 news.setCategoryCode(resultSet.getString("code"));
                 news.setCategoryName(resultSet.getString("name"));
+            } catch (Exception e) {
+            }
+            try {
+                news.setTotalItems(resultSet.getInt("totalcomments"));
+                news.setPercent(resultSet.getInt("percent"));
+            } catch (Exception e) {
+                Logger.getLogger(CategoryMapper.class.getName()).log(Level.SEVERE, null, e);
             }
             return news;
         } catch (SQLException ex) {

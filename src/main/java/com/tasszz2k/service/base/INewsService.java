@@ -25,4 +25,5 @@ public interface INewsService {
     NewsModel findOne(long id);
     List<NewsModel> searchByKeyword(Pageble pageble, String keyword);
     List<NewsModel> findByCategoryCode(Pageble pageble, String categoryCode);
+    List<NewsModel> report();
 }

@@ -173,4 +173,17 @@ public class NewsDAO extends AbstractDAO<NewsModel> implements INewsDAO {
                 + "WHERE category.code=?";
         return count(sql, categoryCode);
     }
+
+    @Override
+    public List<NewsModel> report() {
+        String sql = "SELECT news.id,news.title,news.thumbnail,news.shortdescription\n"
+                + ",news.categoryid,news.createddate,news.createdby,news.modifieddate,news.modifiedby\n"
+                + ",COUNT(comment.id) AS 'totalcomments'\n"
+                + ",(((COUNT(comment.id))*100)/(SELECT COUNT(*) FROM dbo.comment)) AS 'percent'\n"
+                + "FROM dbo.news\n"
+                + "FULL JOIN dbo.comment ON comment.news_id = news.id\n"
+                + "GROUP BY news.id,news.title,news.thumbnail,news.shortdescription\n"
+                + ",news.categoryid,news.createddate,news.createdby,news.modifieddate,news.modifiedby";
+        return query(sql, new NewsMapper());
+    }
 }

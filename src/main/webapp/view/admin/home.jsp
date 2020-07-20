@@ -5,6 +5,7 @@
 --%>
 <%@include  file="/common/taglib.jsp" %>
 <c:url var="APIurl" value="/api-admin-category"/>
+<c:url var="APINewsURL" value="/api-admin-news"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@
     <body>
         <div class="container-fluid">
             <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                <h3 class="text-dark mb-0">Dashboard</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a></div>
+                <h3 class="text-dark mb-0">Dashboard</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="${pageContext.request.contextPath}/admin-home?action=export"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a></div>
             <div class="row">
                 <div class="col-md-6 col-xl-3 mb-4">
                     <div class="card shadow border-left-primary py-2">
@@ -53,11 +54,7 @@
                                         <div class="col-auto">
                                             <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>${user.totalItems}</span></div>
                                         </div>
-                                        <!--                                        <div class="col">
-                                                                                    <div class="progress progress-sm">
-                                                                                        <div class="progress-bar bg-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="sr-only">50%</span></div>
-                                                                                    </div>
-                                                                                </div>-->
+
                                     </div>
                                 </div>
                                 <div class="col-auto"><i class="fas fa-users-cog"></i></div>
@@ -116,6 +113,49 @@
                         </div>
                         <div class="card-body">
                             <div id="chartContainer2" class="chart-area" style="height: 370px; width: 100%; margin: 0px auto;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!--============================================================================================================-->
+            <!--============================================================================================================-->
+            <div class="row">
+                <div class="col-lg-12 col-xl-12">
+                    <div class="card shadow mb-10">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="text-primary font-weight-bold m-0">Statistics comments</h6>
+                            <div class="dropdown no-arrow">
+                                <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
+                                     role="menu">
+                                    <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a></div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="chartContainer3" class="chart-area" style="height: 370px; width: 100%; margin: 0px auto;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!--============================================================================================================-->
+            <div class="row" >
+                <div class="col-lg-12 col-xl-12">
+                    <div class="card shadow mb-10">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="text-primary font-weight-bold m-0">Statistics comments</h6>
+                            <div class="dropdown no-arrow">
+                                <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
+                                     role="menu">
+                                    <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" role="presentation" href="#">&nbsp;Action</a><a class="dropdown-item" role="presentation" href="#">&nbsp;Another action</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#">&nbsp;Something else here</a></div>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                            <div id="chartContainer4" class="chart-area" style="height: 550px; width: 100%; margin: 0px auto;" ></div>
                         </div>
                     </div>
                 </div>
@@ -278,12 +318,13 @@
         </div>
 
         <script>
-            var dataResponse;
+            var dataNewsResponse;
+            var dataCommentsResponse;
             window.onload = function () {
-                report();
-                console.log(dataResponse);
-                var dataTransformNamePercent = transformDataNamePercent(dataResponse);
-                console.log(dataTransformNamePercent);
+                reportNews();
+                console.log(dataNewsResponse);
+                var dataNewsTransformNamePercent = transformDataNewsNamePercent(dataNewsResponse);
+                console.log(dataNewsTransformNamePercent);
                 var chart1 = new CanvasJS.Chart("chartContainer", {
                     theme: "light2", // "light1", "light2", "dark1", "dark2"
                     exportEnabled: true,
@@ -299,37 +340,84 @@
                             legendText: "{label}",
                             indexLabelFontSize: 16,
                             indexLabel: "{label} - {y}%",
-                            dataPoints: dataTransformNamePercent
+                            dataPoints: dataNewsTransformNamePercent
                         }]
                 });
                 chart1.render();
 
                 //==========================================================//
-                var dataTransformNameTotalItems = transformDataNameTotalItems(dataResponse);
-                console.log(dataTransformNameTotalItems);
+                var dataNewsTransformNameTotalItems = transformDataNewsNameTotalItems(dataNewsResponse);
+                console.log(dataNewsTransformNameTotalItems);
                 var chart2 = new CanvasJS.Chart("chartContainer2", {
-                    animationEnabled: true,
                     theme: "light2", // "light1", "light2", "dark1", "dark2"
+                    exportEnabled: true,
+                    animationEnabled: true,
                     title: {
-                        text: "Total Articles"
-                    },
-                    axisY: {
-                        title: "Total Articles"
+                        text: "Statistics articles by category"
                     },
                     data: [{
                             type: "column",
-                            showInLegend: true,
-                            legendMarkerColor: "grey",
-                            legendText: "--- = 2 articles",
-                            dataPoints: dataTransformNameTotalItems
+                            startAngle: 25,
+                            toolTipContent: "<b>{label}</b>: {y}",
+                            showInLegend: "true",
+                            legendText: "{label}",
+                            indexLabelFontSize: 16,
+                            indexLabel: "{label} - {y}",
+                            dataPoints: dataNewsTransformNameTotalItems
                         }]
                 });
                 chart2.render();
 
+                //**************************************************************//
+                reportComments();
+                var dataCommentsTransformNamePercent = transformDataCommentsNamePercent(dataCommentsResponse);
+                var chart3 = new CanvasJS.Chart("chartContainer3", {
+                    theme: "light1", // "light1", "light2", "dark1", "dark2"
+                    exportEnabled: true,
+                    animationEnabled: true,
+                    title: {
+                        text: "Statistics comments by article"
+                    },
+                    data: [{
+                            type: "pie",
+                            startAngle: 25,
+                            toolTipContent: "<b>{label}</b>: {y}%",
+                            showInLegend: "true",
+                            legendText: "{label}",
+                            indexLabelFontSize: 16,
+                            indexLabel: "{label} - {y}%",
+                            dataPoints: dataCommentsTransformNamePercent
+                        }]
+                });
+                chart3.render();
+
+                //==========================================================//
+                var dataCommentsTransformNameTotalItems = transformDataCommentsNameTotalItems(dataCommentsResponse);
+
+                var chart4 = new CanvasJS.Chart("chartContainer4", {
+                    theme: "light1", // "light1", "light2", "dark1", "dark2"
+                    exportEnabled: true,
+                    animationEnabled: true,
+                    title: {
+                        text: "Statistics comments by article"
+                    },
+                    data: [{
+                            // Change type to "bar", "area", "spline", "pie",etc.
+                            type: "bar",
+                            startAngle: 25,
+                            toolTipContent: "<b>{label}</b>: {y}",
+                            showInLegend: "true",
+                            legendText: "{label}",
+                            indexLabelFontSize: 16,
+                            indexLabel: "{label} - {y}",
+                            dataPoints: dataCommentsTransformNameTotalItems
+                        }]
+                });
+                chart4.render();
             }
 
 
-            function transformDataNamePercent(data) {
+            function transformDataNewsNamePercent(data) {
                 var dataTransform = [];
                 data.forEach(function (item) {
                     var element = {y: item.percent, label: item.name};
@@ -337,7 +425,7 @@
                 })
                 return dataTransform;
             }
-            function transformDataNameTotalItems(data) {
+            function transformDataNewsNameTotalItems(data) {
                 var dataTransform = [];
                 data.forEach(function (item) {
                     var element = {y: item.totalItems, label: item.name};
@@ -347,7 +435,26 @@
             }
 
 
-            function report() {
+            function transformDataCommentsNamePercent(data) {
+                var dataTransform = [];
+                data.forEach(function (item) {
+                    var element = {y: item.percent, label: item.title};
+                    dataTransform.push(element);
+                })
+                return dataTransform;
+            }
+            function transformDataCommentsNameTotalItems(data) {
+                var dataTransform = [];
+                data.forEach(function (item) {
+                    var element = {y: item.totalItems, label: item.title};
+                    dataTransform.push(element);
+                })
+                return dataTransform;
+            }
+
+
+
+            function reportNews() {
                 $.ajax({
                     url: '${APIurl}',
                     type: 'GET',
@@ -356,7 +463,26 @@
                     async: !1,
                     success: function (result) {
                         console.log(result);
-                        dataResponse = result;
+                        dataNewsResponse = result;
+                    },
+                    error: function (error) {
+                        console.log(result);
+                        console.log(error);
+                        alert('Empty Data');
+                    }
+                });
+            }
+
+            function reportComments() {
+                $.ajax({
+                    url: '${APINewsURL}',
+                    type: 'GET',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    async: !1,
+                    success: function (result) {
+                        console.log(result);
+                        dataCommentsResponse = result;
                     },
                     error: function (error) {
                         console.log(result);
