@@ -42,7 +42,7 @@
                     <h2><span style="font-size:20px">Giới thiệu một ch&uacute;t, m&igrave;nh l&agrave; <strong>Tuấn Anh -
                                 <u>#TASS</u></strong></span></h2>
 
-                    <p><span style="font-size:20px">Đ&acirc;y l&agrave; sản phẩm <u>web project</u> của m&igrave;nh cho
+                    <p><span style="font-size:20px">Đ&acirc;y l&agrave; sản phẩm <u>web project</u> cho
                             m&ocirc;n Java Web tr&ecirc;n trường của m&igrave;nh.</span></p>
 
                     <p><span style="font-size:20px">Rất vui v&agrave; hoan ngh&ecirc;nh bạn đến với Blog, h&atilde;y đọc

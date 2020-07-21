@@ -41,6 +41,9 @@ public class MessageUtil {
             } else if (message.equals("password_not_match")) {
                 messageResponse = "Password and password repeat not match";
                 alert = "danger";
+            }else if (message.equals("send_message_success")) {
+                messageResponse = "Send message success";
+                alert = "success";
             }
             request.setAttribute("message", messageResponse);
             request.setAttribute("alert", alert);

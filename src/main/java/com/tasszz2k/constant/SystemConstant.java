@@ -23,5 +23,6 @@ public class SystemConstant {
     public static final String CURRENT_USER = "currentUser";
     public static final String COMMENTS = "comments";
     public static final String CATEGORY_CODE = "categoryCode";
+    public static final String MESSAGE_MODEL = "messageModel";
 
 }

@@ -37,6 +37,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/template/gallery/custom-gallery.css">
         <!-- gallery -->
         <script src="${pageContext.request.contextPath}/template/admin/assets/js/jquery.min.js"></script>
+        <!--ckediter-->
+        <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+        <!--ckediter-->
 
     </head>
 
@@ -46,22 +49,22 @@
         <!--header-->
 
         <!--<div class="container">-->
-    <dec:body/>
-    <!--</div>-->
+        <dec:body/>
+        <!--</div>-->
 
-    <!--footer-->
-    <%@include file="/common/web/footer.jsp" %>
-    <!--footer-->
+        <!--footer-->
+        <%@include file="/common/web/footer.jsp" %>
+        <!--footer-->
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    <script src="${pageContext.request.contextPath}/template/web/assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
-    <script src="${pageContext.request.contextPath}/template/web/assets/js/Bold-BS4-Animated-Back-To-Top.js"></script>
-    <script src="${pageContext.request.contextPath}/template/web/assets/js/clean-blog.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <script src="${pageContext.request.contextPath}/template/web/assets/js/bs-init.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+        <script src="${pageContext.request.contextPath}/template/web/assets/js/Bold-BS4-Animated-Back-To-Top.js"></script>
+        <script src="${pageContext.request.contextPath}/template/web/assets/js/clean-blog.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
 
-</body>
+    </body>
 
 </html>

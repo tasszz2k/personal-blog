@@ -2,9 +2,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <footer style="padding: 0px;">
     <hr>
+
     <div class="container" style="margin: 0px auto;">
         <div class="row">
             <div class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-8 offset-xl-2 mx-auto" style="/*margin: 0 auto;*/">
+                <a href="${pageContext.request.contextPath}/message" data-bs-hover-animate="swing"> 
+                    <button class="btn btn-secondary rounded mx-auto d-block" data-bs-hover-animate="swing" type="button">Send secret message to me</button>
+                </a>
+                <hr>
                 <p class="text-muted copyright" style="font-family: 'Open Sans', sans-serif;">
                     <strong>--- * ---</strong>
                 </p>

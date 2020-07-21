@@ -88,7 +88,7 @@ public class PhotoAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         PhotoModel photoModel = HttpUtils.of(request.getReader()).toModel(PhotoModel.class);
 
-        photoModel.setModifiedBy(((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL")).getUserName());
+        photoModel.setCreatedBy(((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL")).getUserName());
         photoModel.setUserId(((UserModel) SessionUtil.getInstance().getValue(request, "USERMODEL")).getId());
 
 //        photoModel.setCreatedBy("tass");

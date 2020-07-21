@@ -125,7 +125,15 @@ GO
 
 ALTER TABLE [photo] ADD CONSTRAINT fk_photo_user FOREIGN KEY (userid) REFERENCES dbo.[user](id);
 
-
+CREATE TABLE [message](
+	id bigint NOT NULL PRIMARY KEY IDENTITY(1,1),
+	content TEXT NULL,
+	createddate DATETIME NULL,
+	modifieddate DATETIME NULL,
+	createdby NVARCHAR(255) NULL,
+	modifiedby NVARCHAR(255) NULL
+);
+GO
 
 
 
