@@ -3,11 +3,12 @@
   <br>
   <a>_#tass_</a>
   <br>
-**My Blog TASsZz2k**  <br>
+My Blog TASsZz2k
+<br>
 </h2>
 
-<h5 align="center">`>> I'm #tass`</h5>
-<h5 align="center">`>> A simple coder want to become a good programmer :"]]`</h5>
+<h5 align="center">I'm #tass</h5>
+<h5 align="center">A simple coder want to become a good programmer :"]]</h5>
 
 <p align="center">
     <a alt="Java">
