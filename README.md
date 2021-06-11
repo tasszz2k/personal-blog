@@ -17,7 +17,7 @@ I want to work in a professional technology environment and always give my best 
 
 <p align="center">
     <a alt="Java">
-        <img src="https://img.shields.io/badge/Java-v1.8-orange.svg" />
+        <img src="https://img.shields.io/badge/Java-v8-orange.svg" />
     </a>
     <a alt="Spring Boot">
         <img src="https://img.shields.io/badge/Spring%20Boot-v2.4-brightgreen.svg" />
