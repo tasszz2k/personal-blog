@@ -11,7 +11,7 @@ My Blog TASsZz2k
 <h5 align="center"><i>I'm dreamy coder wants to be a Solution Architect.<br>
 Why do I say I'm a dreamy coder, besides coding, I also write poems.<br>
 Start roadmap is a Back-end Developer.<br> 
-I want to work in a professional technology environment and always give my best efforts to the company and the product.<br>
+I want to work in a professional technology environment and always give my best efforts to the company and products.<br>
 "It is what I love to do, not what I have to do."
 </i></h5>
 
