@@ -25,10 +25,16 @@ I want to work in a professional technology environment and always give my best 
     <a alt="Docker">
         <img src="https://img.shields.io/badge/Docker-v20.0-yellowgreen.svg" />
     </a>
+    <a alt="MySQL">
+        <img src="https://img.shields.io/badge/MySQL-v8-blue.svg" />
+    </a>
+    <a alt="Redis">
+        <img src="https://img.shields.io/badge/Redis-v-red.svg" />
+    </a>
     <a alt="Junit">
         <img src="https://img.shields.io/badge/Junit-v5.4-red.svg" />
     </a>    
-    <a alt="Junit">
+    <a alt="Mockito">
         <img src="https://img.shields.io/badge/Mockito-v1.10-red.svg" />
     </a>
 </p>
